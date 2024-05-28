@@ -8,6 +8,20 @@ services:
     ports:
       - 1000:80
 
+  node:
+    container_name: node
+    build:
+      context: .
+      dockerfile: Dockerfile.node
+    image: node:latest
+    ports:
+      - 1001:3000
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html
+      - /var/www/html/node_modules
+
   mysql:
     container_name: mysql
     image: mysql:latest
@@ -28,4 +42,3 @@ services:
       PMA_PASSWORD: secret
     links:
       - mysql
-
