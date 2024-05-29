@@ -71,7 +71,10 @@
 </template>
 
 <script>
+import MvpCandidates from "./MvpCandidates.vue";
+
 export default {
+  components: {MvpCandidates},
   props: ['candidates'],
   methods: {
     knowsWordpress(candidate) {
