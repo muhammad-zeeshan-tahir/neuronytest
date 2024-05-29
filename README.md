@@ -4,7 +4,7 @@
 
 ## Installation guide for local machine setup
 
-- Step No.  1 : Install Docker and copy 'smallworldtest' folder
+- Step No.  1 : Install Docker and copy 'neuronytest' folder
 - Step No.  2 : Go to CMD and cd 'path directory of folder'
 - Step No.  4 : Create .env by coping from .env.example
 - Step No.  5 : docker-compose build --no-cache --force-rm 
