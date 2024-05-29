@@ -29,7 +29,7 @@
         </div>
         <div class="px-6 pb-2">
           <span v-for="skill in JSON.parse(candidate.soft_skills)"
-
+                :class="badgeSkillClass(skill)"
                 class="inline-block
                        bg-gray-200
                        rounded-full
@@ -80,11 +80,19 @@ export default {
         'bg-teal-100': this.desiredStrengths.includes(strength)
       };
     },
+    badgeSkillClass(skill) {
+      return {
+        'bg-teal-100': this.desiredSkills.includes(skill)
+      };
+    }
   },
   data() {
     return {
       desiredStrengths: [
         'Vue.js', 'Laravel', 'PHP', 'TailwindCSS'
+      ],
+      desiredSkills: [
+        'Leadership', 'Team player'
       ]
     }
   },
