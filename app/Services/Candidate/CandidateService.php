@@ -66,7 +66,30 @@ class CandidateService implements CandidateServiceInterface
                 'message' => 'Candidate has not been contacted Successfully',
             ], 400);
         }
+    }
 
+    /**
+     * Hire the  Candidates
+     * @return JsonResponse
+     */
+    public function hireCandidates() : JsonResponse
+    {
+
+        $chargeWallet = $this->companyRepository->creditWallet(1, 5);
+
+        if($chargeWallet) {
+            return response()->json([
+                'status' => true,
+                'message' => 'Candidate has been hired Successfully',
+                'data' => []
+            ], 200);
+        }
+        else{
+            return response()->json([
+                'status' => false,
+                'message' => 'Candidate has not been hired Successfully',
+            ], 400);
+        }
     }
 
 }

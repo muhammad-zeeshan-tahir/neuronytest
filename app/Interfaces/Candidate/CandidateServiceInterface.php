@@ -13,4 +13,5 @@ interface CandidateServiceInterface
 
     public function getAllCandidates() : view;
     public function contactCandidates() : JsonResponse;
+    public function hireCandidates() : JsonResponse;
 }
