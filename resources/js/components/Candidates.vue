@@ -42,6 +42,7 @@
         </div>
         <div class="p-6 float-right">
           <button
+                 @click="contactCandidate"
                  class="bg-white
                         hover:bg-gray-100
                         text-gray-800
@@ -72,13 +73,15 @@
 
 <script>
 import MvpCandidates from "./MvpCandidates.vue";
+import Toasted from 'vue-toasted';
+Vue.use(Toasted);
 
 export default {
   components: {MvpCandidates},
   props: ['candidates'],
   methods: {
     knowsWordpress(candidate) {
-      let strengths  = JSON.parse(candidate.strengths);
+      let strengths = JSON.parse(candidate.strengths);
       return strengths.includes('Wordpress');
     },
     badgeStrengthClass(strength) {
@@ -90,6 +93,21 @@ export default {
       return {
         'bg-teal-100': this.desiredSkills.includes(skill)
       };
+    },
+    contactCandidate() {
+      axios.get('api/candidates-contact')
+          .then(response => {
+            this.$toasted.success(response.data.message, {
+              position: 'bottom-center',
+              duration: 3000
+            });
+          })
+          .catch(error => {
+            this.$toasted.error(response.data.message, {
+              position: 'bottom-center',
+              duration: 3000
+            });
+          });
     }
   },
   data() {
