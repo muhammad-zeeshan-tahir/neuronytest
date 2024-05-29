@@ -1,4 +1,4 @@
 
-Hey {{$name}},
-Congratulation you have hired. 😉
+Hey {{$name}}, <br /><br />
+Congratulation you have hired. 😉 <br /><br />
 Neurony
