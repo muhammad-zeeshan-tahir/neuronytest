@@ -18,5 +18,4 @@ Route::get('/', function () {
     return view('homepage');
 });
 
-Route::get('candidates-list', [CandidateController::class, 'index']);
-//Route::post('candidates-contact', [CandidateController::class, 'contact']);
+Route::get('candidates-list', [CandidateController::class, 'index'])->name('candidates-list');

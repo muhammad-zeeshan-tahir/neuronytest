@@ -19,5 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('candidates-contact', [CandidateController::class, 'contact']);
-Route::post('candidates-hire', [CandidateController::class, 'hire']);
+Route::post('candidates-contact', [CandidateController::class, 'contact'])->name('candidates-contact');
+Route::post('candidates-hire', [CandidateController::class, 'hire'])->name('candidates-hire');
