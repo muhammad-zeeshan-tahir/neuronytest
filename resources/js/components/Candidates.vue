@@ -16,6 +16,7 @@
         </div>
         <div class="px-6 pt-4 pb-2">
           <span v-for="strength in JSON.parse(candidate.strengths)"
+                :class="badgeClass(strength)"
                 class="inline-block
                        bg-gray-200
                        rounded-full
@@ -73,6 +74,11 @@ export default {
     knowsWordpress(candidate) {
       let strengths  = JSON.parse(candidate.strengths);
       return strengths.includes('Wordpress');
+    },
+    badgeStrengthClass(strength) {
+      return {
+        'bg-teal-100': this.desiredStrengths.includes(strength)
+      };
     },
   },
   data() {
