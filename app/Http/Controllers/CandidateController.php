@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CandidateRequest;
 use App\Services\Candidate\CandidateService;
 
 class CandidateController extends Controller
@@ -34,16 +35,16 @@ class CandidateController extends Controller
     /**
      * CandidateController contact candidate function.
      */
-    public function contact(){
+    public function contact(CandidateRequest $request){
 
-        return $this->candidateService->contactCandidates();
+        return $this->candidateService->contactCandidates($request);
     }
 
     /**
      * CandidateController hire candidate function.
      */
-    public function hire(){
+    public function hire(CandidateRequest $request){
 
-        return $this->candidateService->hireCandidates();
+        return $this->candidateService->hireCandidates($request);
     }
 }
