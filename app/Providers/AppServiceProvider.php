@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Interfaces\Candidate\CandidateServiceInterface;
+use App\Services\Candidate\CandidateService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(CandidateServiceInterface::class, CandidateService::class);
     }
 
     /**
@@ -23,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        return [
+            CandidateServiceInterface::class => CandidateService::class
+        ];
     }
 }
