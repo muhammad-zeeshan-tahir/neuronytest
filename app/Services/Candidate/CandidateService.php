@@ -3,9 +3,11 @@
 namespace App\Services\Candidate;
 
 use App\Interfaces\Candidate\CandidateServiceInterface;
+use App\Mail\ContactCandidateEmail;
 use App\Repositories\Candidate\CandidateRepository;
 use App\Repositories\Company\CompanyRepository;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 
 class CandidateService implements CandidateServiceInterface
@@ -48,12 +50,17 @@ class CandidateService implements CandidateServiceInterface
      * Contact the  Candidates
      * @return JsonResponse
      */
-    public function contactCandidates() : JsonResponse
+    public function contactCandidates($request) : JsonResponse
     {
 
         $chargeWallet = $this->companyRepository->chargeWallet(1, 5);
 
         if($chargeWallet) {
+            $candidateName = $this->candidateRepository->where('email', $request->email)->first()->name;
+
+            // The email sending is done using the to method on the Mail facade
+            Mail::to($request->email)->send(new ContactCandidateEmail($candidateName));
+
             return response()->json([
                 'status' => true,
                 'message' => 'Candidate has been contacted Successfully',
@@ -72,16 +79,22 @@ class CandidateService implements CandidateServiceInterface
      * Hire the  Candidates
      * @return JsonResponse
      */
-    public function hireCandidates() : JsonResponse
+    public function hireCandidates($request) : JsonResponse
     {
 
-        $chargeWallet = $this->companyRepository->creditWallet(1, 5);
+        $creditWallet = $this->companyRepository->creditWallet(1, 5);
 
-        if($chargeWallet) {
+        if($creditWallet) {
+
+            $candidateName = $this->candidateRepository->where('email', $request->email)->first()->name;
+
+            // The email sending is done using the to method on the Mail facade
+            Mail::to($request->email)->send(new HireCandidateEmail($candidateName));
+
             return response()->json([
                 'status' => true,
                 'message' => 'Candidate has been hired Successfully',
-                'data' => []
+                'data' => [$request->email]
             ], 200);
         }
         else{
