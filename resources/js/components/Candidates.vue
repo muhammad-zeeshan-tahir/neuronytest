@@ -64,6 +64,9 @@
         </div>
       </div>
     </div>
+
+    <MvpCandidates></MvpCandidates>
+
   </div>
 </template>
 
