@@ -12,4 +12,5 @@ use Prettus\Repository\Contracts\RepositoryInterface;
 interface CompanyRepository extends RepositoryInterface
 {
     public function chargeWallet(int $company_id, $charge_coins) : bool;
+    public function creditWallet(int $company_id, $charge_coins) : bool;
 }
