@@ -29,15 +29,21 @@ class CandidateController extends Controller
 
         return $this->candidateService->getAllCandidates();
 
-}
+    }
 
+    /**
+     * CandidateController contact candidate function.
+     */
     public function contact(){
 
         return $this->candidateService->contactCandidates();
     }
 
+    /**
+     * CandidateController hire candidate function.
+     */
     public function hire(){
-        // @todo
-        // Your code goes here...
+
+        return $this->candidateService->hireCandidates();
     }
 }
